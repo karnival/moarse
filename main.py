@@ -51,12 +51,30 @@ def morsify(char):
         morse_dict = { 'h' : '....',
                        ' ' : ' ',
                      }
-        return morse_dict[char]
 
-char_array = list(text)
-for char in char_array:
-        print(morsify(char))
+        if (char in morse_dict):
+                return morse_dict[char]
+        else:
+                return '!'
 
+def blink_morse(text)
+        # Convert text to array of chars, then translate this to dots, dashes, spaces and exclamation marks. The latter are for incompatible characters.
+        char_array = list(text)
 
+        morsified = ''
+
+        for (i, char) in char_array:
+                if (char_array[i] == '[a-z,A-Z,0-9]' && char_array[i+1] == '[a-z,A-Z,0-9]'):
+                        morsified += (morsify(char) + '\') # Backslash for char gap  
+                elif (char_array[i] == '[a-z,A-Z,0-9]' && char_array[i+1] == ' '):
+                        morsified += (morsify(char) + '#') # Hash for word-space gap
+                elif (char_array[i] == '[a-z,A-Z,0-9]' && char_array[i+1] == '$'):
+                        morsified += (morsify(char_array[i+1])) # Hash for word-space gap
+
+        print(morsified)
+
+        for char in morsified:
+                if char == '.'
+                        
 
 GPIO.cleanup()
