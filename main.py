@@ -10,7 +10,6 @@ GPIO.setmode(GPIO.BOARD)
 pin = 26
 GPIO.setup(pin, GPIO.OUT)
 
-text = "Hel!#\+=\n\n-0lo world"
 
 # Set up dot, dash and gap times
 dot_time        = 0.2 # 0.2 seconds
@@ -106,11 +105,27 @@ def blink_morse(text):
                         morsified += (morsify(char_array[i-1]) + '\\')              # Backslash for char gap  
 
                 elif (regex.match(char_array[i-1]) and char_array[i] == ' '):       # Morse-compatible character followed by space
-                        morsified += (morsify(char_array[i-1]) + '#')               # Hash for word-space gap
+                        morsified += (morsify(char_array[i-1]) + ' ')               # Space for word-space gap
 
         print(morsified)
 
+        for char in morsified:
+                if   (char == '.'):
+                        dot()
+                        intra_char_gap()
+
+                elif (char == '-'):
+                        dash()
+                        intra_char_gap()
+
+                elif (char == ' '):
+                        medium_gap()
+
+                elif (char == '\\'):
+                        short_gap()
                         
+                        
+text = "Hel!#\+=\n\n-0lo world"
 blink_morse(text)
 
 GPIO.cleanup()
