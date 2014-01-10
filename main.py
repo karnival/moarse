@@ -10,7 +10,7 @@ GPIO.setmode(GPIO.BOARD)
 pin = 26
 GPIO.setup(pin, GPIO.OUT)
 
-text = "Hello world"
+text = "Hel!#\+=\n\n-0lo world"
 
 # Set up dot, dash and gap times
 dot_time        = 0.2 # 0.2 seconds
@@ -49,8 +49,43 @@ def medium_gap():
 
 
 def morsify(char):
-        morse_dict = { 'h' : '....',
-                       ' ' : ' ',
+        morse_dict = {  'a' : '.-' ,
+                        'b' : '-...',
+                        'c' : '-.-.',
+                        'd' : '-..',
+                        'e' : '.',
+                        'f' : '..-.',
+                        'g' : '--.',
+                        'h' : '....',
+                        'i' : '..',
+                        'j' : '.---',
+                        'k' : '-.-',
+                        'l' : '.-..',
+                        'm' : '--',
+                        'n' : '-.',
+                        'o' : '---',
+                        'p' : '.--.',
+                        'q' : '--.-',
+                        'r' : '.-.',
+                        's' : '...',
+                        't' : '-',
+                        'u' : '..-',
+                        'v' : '...-',
+                        'w' : '.--',
+                        'x' : '-..-',
+                        'y' : '-.--',
+                        'z' : '--..',
+
+                        '1' : '.----',
+                        '2' : '..---',
+                        '3' : '...--',
+                        '4' : '....-',
+                        '5' : '.....',
+                        '6' : '-....',
+                        '7' : '--...',
+                        '8' : '---..',
+                        '9' : '----.',
+                        '0' : '-----',
                      }
 
         if (char in morse_dict):
@@ -59,23 +94,22 @@ def morsify(char):
                 return '!'
 
 def blink_morse(text):
-        # Convert text to array of chars, then translate this to dots, dashes, spaces and exclamation marks. The latter are for incompatible characters.
+        # Convert text to array of lower-case chars, then translate this to Morse
         char_array = list(text.lower())
+
+        regex = re.compile('[a-z,A-Z,0-9]') # Regex used to check a char is in Morse code 
 
         morsified = ''
 
-        regex = re.compile('[a-z,A-Z,0-9]')
-
         for i in range(1, len(char_array)):
-                if (regex.match(char_array[i-1]) and regex.match(char_array[i])):
-                        morsified += (morsify(char_array[i-1]) + '\\') # Backslash for char gap  
-                elif (regex.match(char_array[i-1]) and char_array[i] == ' '):
-                        morsified += (morsify(char_array[i-1]) + '#') # Hash for word-space gap
+                if   (regex.match(char_array[i-1]) and regex.match(char_array[i])): # Morse-compatible character followed by Morse-compatible character
+                        morsified += (morsify(char_array[i-1]) + '\\')              # Backslash for char gap  
+
+                elif (regex.match(char_array[i-1]) and char_array[i] == ' '):       # Morse-compatible character followed by space
+                        morsified += (morsify(char_array[i-1]) + '#')               # Hash for word-space gap
 
         print(morsified)
 
-        #for char in morsified:
-                #if char == '.'
                         
 blink_morse(text)
 
