@@ -12,7 +12,7 @@ GPIO.setup(pin, GPIO.OUT)
 
 
 # Set up dot, dash and gap times
-dot_time        = 0.2 # 0.2 seconds
+dot_time        = 0.1 # 0.1 seconds
 dash_time       = 3 * dot_time
 intra_char_time = dot_time
 short_gap_time  = 3 * dot_time
