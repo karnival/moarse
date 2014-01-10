@@ -2,6 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 import re
+from get_text import get_text
 
 # P1 header scheme numbering
 GPIO.setmode(GPIO.BOARD)
@@ -107,7 +108,7 @@ def blink_morse(text):
                 elif (regex.match(char_array[i-1]) and char_array[i] == ' '):       # Morse-compatible character followed by space
                         morsified += (morsify(char_array[i-1]) + ' ')               # Space for word-space gap
 
-        print(morsified)
+        #print(morsified)
 
         for char in morsified:
                 if   (char == '.'):
@@ -125,7 +126,11 @@ def blink_morse(text):
                         short_gap()
                         
                         
-text = "Hel!#\+=\n\n-0lo world"
-blink_morse(text)
+#text = "Hel!#\+=\n\n-0lo world"
+
+while True:
+        text = get_text()
+        print(text)
+        blink_morse(text)
 
 GPIO.cleanup()
