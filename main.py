@@ -129,7 +129,7 @@ def blink_morse(text):
 #text = "Hel!#\+=\n\n-0lo world"
 
 while True:
-        text = get_text()
+        text = get_text("IRC")
         print(text)
         blink_morse(text)
 
