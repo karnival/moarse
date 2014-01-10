@@ -1,6 +1,7 @@
 # Test that pins can light an LED. Turns out they can! Note this assumes pin 26 is driving the LED.
 import RPi.GPIO as GPIO
 import time
+import re
 
 # P1 header scheme numbering
 GPIO.setmode(GPIO.BOARD)
@@ -9,7 +10,7 @@ GPIO.setmode(GPIO.BOARD)
 pin = 26
 GPIO.setup(pin, GPIO.OUT)
 
-text = "hello world"
+text = "Hello world"
 
 # Set up dot, dash and gap times
 dot_time        = 0.2 # 0.2 seconds
@@ -57,24 +58,25 @@ def morsify(char):
         else:
                 return '!'
 
-def blink_morse(text)
+def blink_morse(text):
         # Convert text to array of chars, then translate this to dots, dashes, spaces and exclamation marks. The latter are for incompatible characters.
-        char_array = list(text)
+        char_array = list(text.lower())
 
         morsified = ''
 
-        for (i, char) in char_array:
-                if (char_array[i] == '[a-z,A-Z,0-9]' && char_array[i+1] == '[a-z,A-Z,0-9]'):
-                        morsified += (morsify(char) + '\') # Backslash for char gap  
-                elif (char_array[i] == '[a-z,A-Z,0-9]' && char_array[i+1] == ' '):
-                        morsified += (morsify(char) + '#') # Hash for word-space gap
-                elif (char_array[i] == '[a-z,A-Z,0-9]' && char_array[i+1] == '$'):
-                        morsified += (morsify(char_array[i+1])) # Hash for word-space gap
+        regex = re.compile('[a-z,A-Z,0-9]')
+
+        for i in range(1, len(char_array)):
+                if (regex.match(char_array[i-1]) and regex.match(char_array[i])):
+                        morsified += (morsify(char_array[i-1]) + '\\') # Backslash for char gap  
+                elif (regex.match(char_array[i-1]) and char_array[i] == ' '):
+                        morsified += (morsify(char_array[i-1]) + '#') # Hash for word-space gap
 
         print(morsified)
 
-        for char in morsified:
-                if char == '.'
+        #for char in morsified:
+                #if char == '.'
                         
+blink_morse(text)
 
 GPIO.cleanup()
