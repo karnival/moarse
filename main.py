@@ -97,16 +97,20 @@ def blink_morse(text):
         # Convert text to array of lower-case chars, then translate this to Morse
         char_array = list(text.lower())
 
-        regex = re.compile('[a-z,A-Z,0-9]') # Regex used to check a char is in Morse code 
+        regex_char = re.compile('[a-z,A-Z,0-9]') # Regex used to check a char is in Morse code 
+        regex_endl = re.compile('\n') # Regex used to check a char is followed by endline
 
         morsified = ''
 
         for i in range(1, len(char_array)):
-                if   (regex.match(char_array[i-1]) and regex.match(char_array[i])): # Morse-compatible character followed by Morse-compatible character
+                if   (regex_char.match(char_array[i-1]) and regex_char.match(char_array[i])): # Morse-compatible character followed by Morse-compatible character
                         morsified += (morsify(char_array[i-1]) + '\\')              # Backslash for char gap  
 
-                elif (regex.match(char_array[i-1]) and char_array[i] == ' '):       # Morse-compatible character followed by space
+                elif (regex_char.match(char_array[i-1]) and char_array[i] == ' '):       # Morse-compatible character followed by space
                         morsified += (morsify(char_array[i-1]) + ' ')               # Space for word-space gap
+
+                elif (i==len(char_array)):
+                        morsified += (morsify(char_array[i-1] + ' '))
 
         #print(morsified)
 

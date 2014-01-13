@@ -8,5 +8,9 @@ def get_text(mode):
                 file.close()
 
                 last_line = lines[-1]
-                last_line = last_line.split('> ', 1)[1] # Remove the first word, i.e. the nick, from the line
+                if (last_line[0:1] == '< '):
+                        last_line = last_line.split('> ', 1)[1] # Remove the first word, i.e. the nick, from the line
+                else:
+                        last_line = "SOS"
+
                 return last_line
