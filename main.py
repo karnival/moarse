@@ -134,7 +134,7 @@ def blink_morse(text):
 
 while True:
         text = get_text("IRC")
-        print(text)
+        #print(text)
         blink_morse(text)
 
 GPIO.cleanup()
