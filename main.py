@@ -109,8 +109,8 @@ def blink_morse(text):
                 elif (regex_char.match(char_array[i-1]) and char_array[i] == ' '):       # Morse-compatible character followed by space
                         morsified += (morsify(char_array[i-1]) + ' ')               # Space for word-space gap
 
-                elif (i==len(char_array)):
-                        morsified += (morsify(char_array[i-1] + ' '))
+                if (i==len(char_array)-1): # Last character on the line
+                        morsified += (morsify(char_array[i]) + ' ')
 
         #print(morsified)
 
@@ -130,7 +130,7 @@ def blink_morse(text):
                         short_gap()
                         
                         
-#text = "Hel!#\+=\n\n-0lo world"
+#text = "SO"
 
 while True:
         text = get_text("IRC")
