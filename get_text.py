@@ -3,7 +3,7 @@
 
 def get_text(mode):
 	if mode == "IRC":
-                file = open("oxhack.log")
+                file = open("/home/pi/moarse/oxhack.log")
                 lines = file.readlines()
                 file.close()
 
