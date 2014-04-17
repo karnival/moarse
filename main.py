@@ -8,7 +8,7 @@ from get_text import get_text
 GPIO.setmode(GPIO.BOARD)
 
 # Create GPIO output channel on 26
-pin = 26
+pin = 11
 GPIO.setup(pin, GPIO.OUT)
 
 
