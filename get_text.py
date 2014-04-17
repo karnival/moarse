@@ -1,9 +1,10 @@
 # Gets the last line from e.g. an IRC log. Relies on e.g. irssi logging IRC.
-
+import urllib
 
 def get_text(mode):
 	if mode == "IRC":
-                file = open("/home/pi/moarse/oxhack.log")
+		urllib.urlretrieve("http://users.ox.ac.uk/~kebl3927/oxspace.log", "/home/pi/moarse/oxspace.log")
+                file = open("/home/pi/moarse/oxspace.log")
                 lines = file.readlines()
                 file.close()
 
