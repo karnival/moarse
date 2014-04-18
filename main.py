@@ -19,37 +19,7 @@ intra_char_time = dot_time
 short_gap_time  = 3 * dot_time
 medium_gap_time = 7 * dot_time
 
-# Set up pin writing functions for dash, dot, etc
-def dash():
-        GPIO.output(pin, GPIO.HIGH)
-        time.sleep(dash_time)
-        GPIO.output(pin, GPIO.LOW)
-        return
-
-def dot():
-        GPIO.output(pin, GPIO.HIGH)
-        time.sleep(dot_time)
-        GPIO.output(pin, GPIO.LOW)
-        return
-
-def intra_char_gap():
-        GPIO.output(pin, GPIO.LOW)
-        time.sleep(intra_char_time)
-        return
-
-def short_gap():
-        GPIO.output(pin, GPIO.LOW)
-        time.sleep(short_gap_time)
-        return
-
-def medium_gap():
-        GPIO.output(pin, GPIO.LOW)
-        time.sleep(medium_gap_time)
-        return
-
-
-def morsify(char):
-        morse_dict = {  'a' : '.-' ,
+morse_dict = {  	'a' : '.-' ,
                         'b' : '-...',
                         'c' : '-.-.',
                         'd' : '-..',
@@ -88,6 +58,36 @@ def morsify(char):
                         '0' : '-----',
                      }
 
+# Set up pin writing functions for dash, dot, etc
+def dash():
+        GPIO.output(pin, GPIO.HIGH)
+        time.sleep(dash_time)
+        GPIO.output(pin, GPIO.LOW)
+        return
+
+def dot():
+        GPIO.output(pin, GPIO.HIGH)
+        time.sleep(dot_time)
+        GPIO.output(pin, GPIO.LOW)
+        return
+
+def intra_char_gap():
+        GPIO.output(pin, GPIO.LOW)
+        time.sleep(intra_char_time)
+        return
+
+def short_gap():
+        GPIO.output(pin, GPIO.LOW)
+        time.sleep(short_gap_time)
+        return
+
+def medium_gap():
+        GPIO.output(pin, GPIO.LOW)
+        time.sleep(medium_gap_time)
+        return
+
+
+def morsify(char):
         if (char in morse_dict):
                 return morse_dict[char]
         else:
@@ -128,6 +128,8 @@ def blink_morse(text):
 
                 elif (char == '\\'):
                         short_gap()
+		else:
+			pass
                         
                         
 #text = "SO"
