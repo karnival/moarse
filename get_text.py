@@ -3,8 +3,8 @@ import urllib
 
 def get_text(mode):
 	if mode == "IRC":
-		urllib.urlretrieve("http://users.ox.ac.uk/~kebl3927/oxspace.log", "/home/pi/moarse/oxspace.log")
-                file = open("/home/pi/moarse/oxspace.log")
+		urllib.urlretrieve("http://users.ox.ac.uk/~kebl3927/oxspace.log", "/home/pi/moarse/oxhack.log")
+                file = open("/home/pi/moarse/oxhack.log")
                 lines = file.readlines()
                 file.close()
 
